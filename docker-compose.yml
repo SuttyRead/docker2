@@ -1,0 +1,37 @@
+version: '3.1'
+
+services:
+
+  server:
+    image: server
+    build: server
+    restart: always
+    depends_on:
+      - mysql
+    ports:
+      - '9000:9000'
+    expose:
+      - '9000'
+
+  client:
+    image: client
+    build: client
+    ports:
+      - '3000:3000'
+    expose:
+      - '3000'
+
+  mysql:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: react
+    ports:
+      - 3306:3306
+
+
+
+
+
+
